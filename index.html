@@ -1,209 +1,81 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Premium Verification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root { --primary: #0064ff; --white: rgba(255, 255, 255, 0.9); }
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            overflow: hidden; 
-            height: 100vh; 
-            background-color: #000;
-        }
-
-        #bg-image {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-            background: url('결제페이지용임시ai사진.png') no-repeat center center;
-            background-size: cover;
-        }
-
-        .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); z-index: -1;
-        }
-
-        .pricing-container {
-            display: flex; justify-content: center; align-items: center;
-            gap: 30px; height: 100vh; padding: 20px;
-        }
-
-        .plan-card { 
-            background: rgba(255, 255, 255, 0.1); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px; padding: 40px; width: 320px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: white; text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
-            position: relative;
-        }
-
-        .plan-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .plan-card.pro { 
-            border: 2px solid var(--primary); 
-            background: rgba(0, 100, 255, 0.05); 
-        }
-
-        .badge { 
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            background: var(--primary); color: white; padding: 6px 16px; 
-            border-radius: 20px; font-size: 12px; font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 100, 255, 0.3);
-        }
-
-        .price { font-size: 44px; font-weight: 700; margin: 20px 0; }
-        .price span { font-size: 16px; opacity: 0.7; }
-
-        .features { list-style: none; padding: 0; text-align: left; margin: 30px 0; font-size: 15px; }
-        .features li { margin-bottom: 14px; display: flex; align-items: center; }
-        .features li::before { content: "✓"; color: var(--primary); margin-right: 12px; font-weight: bold; }
-
-        .btn-plan { 
-            width: 100%; padding: 16px; border-radius: 12px; border: none; 
-            font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 16px;
-        }
-        .btn-free { background: rgba(255,255,255,0.15); color: white; }
-        .btn-pro { background: var(--primary); color: white; }
-        .btn-pro:hover { background: #0052d4; transform: scale(1.02); }
-        .btn-pro:disabled { background: #444; cursor: not-allowed; transform: none; }
-
-        /* 상단 사용자 상태바 */
-        #auth-status {
-            position: fixed; top: 20px; right: 20px;
-            color: white; font-size: 14px; z-index: 20;
-            display: flex; align-items: center; gap: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="bg-image"></div>
-    <div class="overlay"></div>
-
-    <div id="auth-status"></div>
-
-    <div class="pricing-container">
-        <div class="plan-card">
-            <h3>Free</h3>
-            <div class="price">₩0 <span>/ 영구</span></div>
-            <ul class="features">
-                <li>차단 23회 제한</li>
-                <li>기본 커스텀 메뉴</li>
-                <li>커뮤니티 지원</li>
-            </ul>
-            <button class="btn-plan btn-free">현재 플랜</button>
-        </div>
-
-        <div class="plan-card pro">
-            <div class="badge">가장 인기 있음</div>
-            <h3>Premium</h3>
-            <div class="price">₩1,100 <span>/ 월</span></div>
-            <ul class="features">
-                <li><strong>차단 횟수 무제한</strong></li>
-                <li>전문적인 자동차단 엔진</li>
-                <li>광고 및 트래커 완전 제거</li>
-                <li>우선 고객 지원</li>
-            </ul>
-            <button id="pay-button" class="btn-plan btn-pro" onclick="requestPayment()">지금 업그레이드</button>
-        </div>
+<div id="login-container" style="position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; z-index: 10;">
+    <div id="g_id_onload" 
+         data-client_id="470750463239-0kddh7qd8v5pgsdscg3lvenkksj8gk69.apps.googleusercontent.com.apps.googleusercontent.com" 
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
     </div>
+    <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="left"></div>
+</div>
 
-    <div id="login-container" style="position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; z-index: 10;">
-        <div id="g_id_onload" data-client_id="470750463239-0v8p...apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
-        <div class="g_id_signin" data-type="standard"></div>
-    </div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+    // 루나틱의 최신 설정값 적용
+    const firebaseConfig = {
+        apiKey: "AIzaSyA6wocMpwC8ZXaCL7R63iz8-bpINW-SsiE",
+        authDomain: "dclowlifeblocker.firebaseapp.com",
+        projectId: "dclowlifeblocker",
+        storageBucket: "dclowlifeblocker.firebasestorage.app",
+        messagingSenderId: "470750463239",
+        appId: "1:470750463239:web:1d2fe7f53cfff2559d71a2",
+        measurementId: "G-X2TX4SYHCP"
+    };
 
-    <script>
-        // 루나틱의 Firebase 설정값 적용
-        const firebaseConfig = {
-            apiKey: "AIzaSyA6wocMpwC8ZXaCL7R63iz8-bpINW-SsiE",
-            authDomain: "dclowlifeblocker.firebaseapp.com",
-            projectId: "dclowlifeblocker",
-            storageBucket: "dclowlifeblocker.firebasestorage.app",
-            messagingSenderId: "470750463239",
-            appId: "1:470750463239:web:1d2fe7f53cfff2559d71a2",
-            measurementId: "G-X2TX4SYHCP"
-        };
+    // Firebase 초기화
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
+    // [수정됨] 구글 로그인 콜백 함수
+    function handleCredentialResponse(response) {
+        // 구글에서 받은 토큰으로 파이어베이스 인증 수행
+        const credential = firebase.auth.GoogleAuthProvider.credential(response.credential);
+        auth.signInWithCredential(credential).then((result) => {
+            console.log("로그인 성공!", result.user);
+            // 페이지 새로고침 없이 상태 반영을 위해 자동 감시 로직이 작동함
+        }).catch((error) => {
+            console.error("인증 실패:", error);
+            alert("로그인에 실패했습니다. 관리자 설정을 확인하세요.");
+        });
+    }
 
-        // 1. 구글 로그인 결과 처리 함수
-        function handleCredentialResponse(response) {
-            const credential = firebase.auth.GoogleAuthProvider.credential(response.credential);
-            auth.signInWithCredential(credential).then((result) => {
-                console.log("Firebase 로그인 성공:", result.user);
-            }).catch((error) => {
-                alert("로그인 중 오류가 발생했습니다: " + error.message);
-            });
-        }
+    // 인증 상태 실시간 감시 (기존 로직 유지)
+    auth.onAuthStateChanged(async (user) => {
+        const statusDiv = document.getElementById('auth-status');
+        const loginContainer = document.getElementById('login-container');
+        const payBtn = document.getElementById('pay-button');
 
-        // 2. 인증 상태 실시간 감시
-        auth.onAuthStateChanged(async (user) => {
-            const statusDiv = document.getElementById('auth-status');
-            const loginContainer = document.getElementById('login-container');
-            const payBtn = document.getElementById('pay-button');
-
-            if (user) {
-                // 로그인 된 상태
-                statusDiv.innerHTML = `<span>${user.email}</span> <button onclick="auth.signOut()" style="background:none; border:1px solid white; color:white; padding:4px 8px; border-radius:4px; cursor:pointer;">로그아웃</button>`;
-                loginContainer.style.display = 'none';
-                
-                // DB에서 프리미엄 여부 조회
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                if (userDoc.exists && userDoc.data().isPremium === true) {
-                    payBtn.innerText = "프리미엄 활성화됨";
-                    payBtn.disabled = true;
-                } else {
-                    payBtn.innerText = "지금 업그레이드";
-                    payBtn.disabled = false;
-                }
-            } else {
-                // 로그아웃 상태
-                statusDiv.innerHTML = "";
-                loginContainer.style.display = 'flex';
-                payBtn.innerText = "로그인 후 구매 가능";
+        if (user) {
+            statusDiv.innerHTML = `<span>${user.email}</span> <button onclick="auth.signOut()" style="border:1px solid white; color:white; background:none; cursor:pointer; padding:2px 5px;">로그아웃</button>`;
+            loginContainer.style.display = 'none';
+            
+            const userDoc = await db.collection('users').doc(user.uid).get();
+            if (userDoc.exists && userDoc.data().isPremium) {
+                payBtn.innerText = "프리미엄 활성화됨";
                 payBtn.disabled = true;
             }
-        });
-
-        // 3. 결제 요청 함수 (테스트용)
-        async function requestPayment() {
-            const user = auth.currentUser;
-            if (!user) return;
-
-            // 실제 결제 API가 붙기 전까지의 로직 (임시)
-            if (confirm('1,100원 결제를 진행하시겠습니까? (테스트 확인용)')) {
-                try {
-                    await db.collection('users').doc(user.uid).set({
-                        email: user.email,
-                        isPremium: true,
-                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    }, { merge: true });
-                    
-                    alert('성공적으로 업그레이드되었습니다!');
-                } catch (e) {
-                    alert('데이터 저장 중 오류 발생: ' + e.message);
-                }
-            }
+        } else {
+            statusDiv.innerHTML = "";
+            loginContainer.style.display = 'flex';
+            payBtn.innerText = "로그인 후 구매 가능";
+            payBtn.disabled = true;
         }
-    </script>
-</body>
-</html>
+    });
+
+    async function requestPayment() {
+        const user = auth.currentUser;
+        if (!user) return;
+
+        if (confirm('1,100원 결제를 진행하시겠습니까? (테스트 확인용)')) {
+            await db.collection('users').doc(user.uid).set({
+                email: user.email,
+                isPremium: true,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+            alert('성공적으로 업그레이드되었습니다!');
+        }
+    }
+</script>
