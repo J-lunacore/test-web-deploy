@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Premium Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #0064ff; --white: rgba(255, 255, 255, 0.9); }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden; 
+            height: 100vh; 
+            background-color: #000; /* 이미지 로딩 전 기본 배경색 */
+        }
+
+        /* 배경 이미지 설정 (비디오 대신 이미지로 변경) */
+        #bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: url('결제페이지용임시ai사진.png') no-repeat center center;
+            background-size: cover; /* 화면에 꽉 차게 */
+        }
+
+        /* 이미지 위에 어두운 오버레이 (텍스트 및 카드 가독성 확보) */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* 이미지 밝기에 따라 0.3~0.7 사이 조절 */
+            z-index: -1;
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* 유리 질감 (Glassmorphism) 카드 디자인 */
+        .plan-card { 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(20px); /* 블러 강도를 살짝 높여 고급스럽게 수정 */
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            width: 320px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+            position: relative;
+        }
+
+        .plan-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* 프리미엄 카드 강조 */
+        .plan-card.pro { 
+            border: 2px solid var(--primary); 
+            background: rgba(0, 100, 255, 0.05); 
+        }
+
+        .badge { 
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px; 
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 100, 255, 0.3);
+        }
+
+        .price { font-size: 44px; font-weight: 700; margin: 20px 0; }
+        .price span { font-size: 16px; opacity: 0.7; }
+
+        .features { list-style: none; padding: 0; text-align: left; margin: 30px 0; font-size: 15px; }
+        .features li { margin-bottom: 14px; display: flex; align-items: center; }
+        .features li::before { content: "✓"; color: var(--primary); margin-right: 12px; font-weight: bold; }
+
+        .btn-plan { 
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none; 
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 16px;
+        }
+        .btn-free { background: rgba(255,255,255,0.15); color: white; }
+        .btn-free:hover { background: rgba(255,255,255,0.25); }
+        .btn-pro { background: var(--primary); color: white; }
+        .btn-pro:hover { background: #0052d4; transform: scale(1.02); }
+    </style>
+</head>
+<body>
+
+    <div id="bg-image"></div>
+    <div class="overlay"></div>
+
+    <div class="pricing-container">
+        <div class="plan-card">
+            <h3>Free</h3>
+            <div class="price">₩0 <span>/ 영구</span></div>
+            <ul class="features">
+                <li>차단 23회 제한</li>
+                <li>기본 커스텀 메뉴</li>
+                <li>커뮤니티 지원</li>
+            </ul>
+            <button class="btn-plan btn-free">현재 플랜</button>
+        </div>
+
+        <div class="plan-card pro">
+            <div class="badge">가장 인기 있음</div>
+            <h3>Premium</h3>
+            <div class="price">₩1,100 <span>/ 월</span></div>
+            <ul class="features">
+                <li><strong>차단 횟수 무제한</strong></li>
+                <li>전문적인 자동차단 엔진</li>
+                <li>광고 및 트래커 완전 제거</li>
+                <li>우선 고객 지원</li>
+            </ul>
+            <button class="btn-plan btn-pro" onclick="requestPayment()">지금 업그레이드</button>
+        </div>
+    </div>
+
+    <div style="position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; z-index: 10;">
+        <div id="g_id_onload" data-client_id="YOUR_WEB_CLIENT_ID" data-callback="onGoogleLogin"></div>
+        <div class="g_id_signin" data-type="standard"></div>
+    </div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function requestPayment() {
+            // 여기에 결제 로직 연결 (Stripe, PortOne 등)
+            alert('결제 시스템 연결 준비 중입니다.');
+        }
+    </script>
+</body>
+</html>
